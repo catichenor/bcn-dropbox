@@ -6,15 +6,15 @@
 
 This is a Python script, using code mostly ripped off from [this Dropbox blog post](https://blogs.dropbox.com/developers/2013/11/low-latency-notification-of-dropbox-file-changes/) which works in conjunction with my fork of [baby-connect-nightmare](https://github.com/catichenor/baby-connect-nightmare) to upload info to BabyConnect using Dropbox rather than a server.
 
-It works by scanning a directory on a Dropbox folder for changes to a file named "babyLog.txt", then reads each line from the file as JSON, then sends a REST API request to baby-connect-nightmare to upload the info to BabyConnect.
+It works by scanning a directory on a Dropbox folder for changes to a file named `babyLog.txt`, then reads each line from the file as JSON, then sends a REST API request to `baby-connect-nightmare` to upload the info to BabyConnect.
 
 ### Why not just use baby-connect-nightmare?
 
-I don't have a Internet-accessible server available, much less one with SSL enabled to encrypt my login info. However, this bypasses the need to upload login info anywhere, since the login info is stored locally.
+`bcn-dropbox` allows you to use baby-connect-nightmare without a publicly-accessible server, and bypasses the need to upload login info anywhere, since your login info is stored locally.
 
 ### How do I use it?
 
-Download or clone this repository locally, and create a JSON file called `accessInfo.json` with these contents:
+Download or clone this repository locally, `cd` to the extracted directory, and create a JSON file called `accessInfo.json` with these contents:
 
 ```JSON
 {
@@ -34,8 +34,8 @@ Download or clone this repository locally, and create a JSON file called `access
 
 Start up the `baby-connect-nightmare` server.
 
-Once the `accessInfo.json` file is created, launch the script with the `python bcn-dropbox` command to start scanning a folder for changes to a file named `babyLog.txt`. JSON entries pushed to this .txt file should be in this format:
+Once the `accessInfo.json` file is created, launch the script with the `python bcn-dropbox.py` command to start scanning a folder for changes to a file named `babyLog.txt`. JSON entries pushed to this .txt file should be in this format:
 
-`{"type":"bm", "quantity":"large"}` - This is an entry for a large poopy diaper.
+`{"type":"bm", "quantity":"large"}` - This is an entry for a large poopy diaper. Note that everything is on one line, which is required for this script to work.
 
-The script will read each line from the file (usually this will be one line) as JSON, and add an entry to BabyConnect, then it will erase the file. The script will only add an entry when the `babyLog.txt` file is not empty.
+The script will read each line from the file (usually this will be one line) as JSON, and add an entry to BabyConnect, then it will erase the file and create a new, empty `babyLog.txt` file. The script will only add an entry when the `babyLog.txt` file is not empty.
