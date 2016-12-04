@@ -34,7 +34,7 @@ Download or clone this repository locally, and create a JSON file called `access
 
 Start up the `baby-connect-nightmare` server.
 
-Once this file is generated, launch the script with the `python bcn-dropbox` command to start scanning a folder for changes to a file named `babyLog.txt`. JSON entries pushed to this .txt file should be in this format:
+Once the `accessInfo.json` file is created, launch the script with the `python bcn-dropbox` command to start scanning a folder for changes to a file named `babyLog.txt`. JSON entries pushed to this .txt file should be in this format:
 
 `{"type":"bm", "quantity":"large"}` - This is an entry for a large poopy diaper.
 
