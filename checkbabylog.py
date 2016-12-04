@@ -30,7 +30,7 @@ while True:
 					for log_line in baby_log_lines:
 						upload_line = {'email': access_info['email'], 'password': access_info['password'], 'kidId': access_info['kidId']}
 						upload_line.update(json.loads(log_line))
-						r = requests.post(url, json=upload_line)
+						r = requests.post(url + '/diaper', json=upload_line)
 					client.file_delete('/babyLog.txt')
 					response = client.put_file('/babyLog.txt', '')
 		else:
